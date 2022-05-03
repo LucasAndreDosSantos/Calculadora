@@ -23,14 +23,30 @@ public class AcaoBotao {
         calculos = new Calculos();
     }
 
-    //Define as ações do click em cada botão
-    public void acaobotoes(ActionEvent e) {
-
+    public void pegaTeclaClicada(ActionEvent e){
         for (int i = 0; i < teclas.length; i++) {
             if (e.getSource() == botaos[i]) {
                 TeclaClicada = i; //Define qual tecla foi clicada
             }
         }
+
+        System.out.println("A");
+        acaoBotoes();
+        
+    }
+
+    public void pegaTeclaDigitada(char ValorDigitado){
+        for (int i = 0; i < teclas.length; i++) {
+            if (ValorDigitado == teclas[i].charAt(0)) {
+                TeclaClicada = i; //Define qual tecla foi clicada
+            }
+        }
+
+        acaoBotoes();
+    }
+
+    //Define as ações do click em cada botão
+    private void acaoBotoes() {
 
         // Verifica se foi clicado em um número, no igual, no limpar ou em um sinal
         if (((teclas[TeclaClicada].matches("^[0-9]*$")) == true)) {
