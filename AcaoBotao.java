@@ -130,4 +130,14 @@ public class AcaoBotao {
         }
     }
 
+    public void retirandoValores(){
+        if("+-*/".contains(Conta.substring(Conta.length() - 2,Conta.length() - 1))){
+            Conta = Conta.substring(0,Conta.length() - 3);
+        }else{
+            Conta = Conta.substring(0,Conta.length() - 1);
+        }
+
+        caixaDialogo.setText(Conta);
+    }
+
 }

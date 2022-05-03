@@ -16,19 +16,11 @@ public class Teclado {
     public void teclaEnterPressionada(KeyEvent event, AcaoBotao acoesBotoes){
         if(KeyEvent.VK_ENTER == event.getKeyCode()){
             acoesBotoes.pegaTeclaDigitada("=".charAt(0));
+        }else if(KeyEvent.VK_BACK_SPACE == event.getKeyCode()){
+            acoesBotoes.retirandoValores();
         }else{
             event.consume();
         }
     }
-
-    /*
-
-    case KeyEvent.VK_ENTER:
-    acoesBotoes.pegaTeclaDigitada("=".charAt(0));
-    break;
-
-    */
-
-
 
 }
