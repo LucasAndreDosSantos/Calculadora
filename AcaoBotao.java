@@ -30,7 +30,6 @@ public class AcaoBotao {
             }
         }
 
-        System.out.println("A");
         acaoBotoes();
         
     }

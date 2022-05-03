@@ -13,6 +13,7 @@ public class Calculos {
 
     //Função responsável por calcular com os botões selecionados
     public String ContaMatematica(String Conta, ArrayList<Integer> Prioridade) {
+
 		valores = Conta.split(" ",100); //Divide a string da conta em diversas strings
 		
         contaMultDiv(Prioridade);
@@ -29,6 +30,7 @@ public class Calculos {
 		
 		ContaPrimaria = Integer.toString(Resultado);
 		Conta = ContaPrimaria;
+		ContaPrimaria = "";
         return Conta;
 		
 	}
@@ -52,6 +54,8 @@ public class Calculos {
 				sinal = valores[i];
 			}
 		}
+
+		QuantidadeNumeros = 0;
     }
 
     //Função responsável por realizar as ações necessárias para fazer a conta de divisão ou multiplicação
@@ -87,6 +91,9 @@ public class Calculos {
 				Sinais++;
 			}
 		}
+
+		QuantidadeNumeros = 0;
+
     }
 	
 
@@ -94,9 +101,9 @@ public class Calculos {
 	private int CalculoBasico(String sinal, int Valor1, int Valor2) {
 		switch(sinal) {
 			case "+": 
-				return Valor1 + Valor2;
+				return (Valor1 + Valor2);
 			case "-": 
-				return Valor1 - Valor2;
+				return (Valor1 - Valor2);
 		}
 		
 		return 0;
