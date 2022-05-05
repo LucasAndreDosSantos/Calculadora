@@ -23,28 +23,28 @@ public class AcaoBotao {
         calculos = new Calculos();
     }
 
-    public void pegaTeclaClicada(ActionEvent e){
+    public void pegaTeclaClicada(ActionEvent e) {
         for (int i = 0; i < teclas.length; i++) {
             if (e.getSource() == botaos[i]) {
-                TeclaClicada = i; //Define qual tecla foi clicada
+                TeclaClicada = i; // Define qual tecla foi clicada
             }
         }
 
         acaoBotoes();
-        
+
     }
 
-    public void pegaTeclaDigitada(char ValorDigitado){
+    public void pegaTeclaDigitada(char ValorDigitado) {
         for (int i = 0; i < teclas.length; i++) {
             if (ValorDigitado == teclas[i].charAt(0)) {
-                TeclaClicada = i; //Define qual tecla foi clicada
+                TeclaClicada = i; // Define qual tecla foi clicada
             }
         }
 
         acaoBotoes();
     }
 
-    //Define as ações do click em cada botão
+    // Define as ações do click em cada botão
     private void acaoBotoes() {
 
         // Verifica se foi clicado em um número, no igual, no limpar ou em um sinal
@@ -66,12 +66,13 @@ public class AcaoBotao {
 
         }
 
-        //Coloca o cálculo até o momento na tela
+        // Coloca o cálculo até o momento na tela
         caixaDialogo.setText(Conta);
     }
 
-    //Função responsável por adicionar o número na conta e fazer as ações necessárias
-    private void digitouNumero(){
+    // Função responsável por adicionar o número na conta e fazer as ações
+    // necessárias
+    private void digitouNumero() {
         if (FezConta == true) {
             FezConta = false;
             Conta = "";
@@ -86,18 +87,25 @@ public class AcaoBotao {
         BotouNumero = true;
     }
 
-    //Função responsável por chamar a classe que vai fazer o cálculo
-    private void digitouIgual(){
+    // Função responsável por chamar a classe que vai fazer o cálculo
+    private void digitouIgual() {
         if (AdicinouSinal == true) {
             Conta += NumeroProvisorio;
             AdicinouSinal = false;
         }
+
         Conta = calculos.ContaMatematica(Conta, Prioridade);
         FezConta = true;
+
+        if (Integer.parseInt(Conta) < 0) {
+            Prioridade.add(0);
+            Conta = "0 " + Conta.substring(0, 1) + " " + Conta.substring(1, Conta.length());
+        }
     }
 
-    //Função responsável por adicionar o sinal na conta e fazer as ações necessárias de prioridade
-    private void digitouSinal(){
+    // Função responsável por adicionar o sinal na conta e fazer as ações
+    // necessárias de prioridade
+    private void digitouSinal() {
         if (FezConta == true) {
             FezConta = false;
         }
@@ -130,11 +138,15 @@ public class AcaoBotao {
         }
     }
 
-    public void retirandoValores(){
-        if("+-*/".contains(Conta.substring(Conta.length() - 2,Conta.length() - 1))){
-            Conta = Conta.substring(0,Conta.length() - 3);
-        }else{
-            Conta = Conta.substring(0,Conta.length() - 1);
+    public void retirandoValores() {
+        if (Conta.length() > 1) {
+            if ("+-*/".contains(Conta.substring(Conta.length() - 2, Conta.length() - 1))) {
+                Conta = Conta.substring(0, Conta.length() - 3);
+            } else {
+                Conta = Conta.substring(0, Conta.length() - 1);
+            }
+        }else {
+            Conta = "";
         }
 
         caixaDialogo.setText(Conta);

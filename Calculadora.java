@@ -31,19 +31,18 @@ public class Calculadora extends JFrame {
 		CaixaDialogo.setFont(new Font("Times new Roman", Font.BOLD, 40));
 		this.add(CaixaDialogo);
 		CaixaDialogo.addKeyListener(new KeyAdapter() {
-            @Override
-    		public void keyTyped(KeyEvent evt) {
+			@Override
+			public void keyTyped(KeyEvent evt) {
 				teclado.chavePressionada(evt, acoesBotoes);
 			}
 		});
 
 		CaixaDialogo.addKeyListener(new KeyAdapter() {
-            @Override
-    		public void keyReleased(KeyEvent evt) {
+			@Override
+			public void keyReleased(KeyEvent evt) {
 				teclado.teclaEnterPressionada(evt, acoesBotoes);
 			}
 		});
-
 
 		botaos = new JButton[teclas.length]; // Cria um array com todos os botões
 		eventoBotao();
@@ -57,6 +56,7 @@ public class Calculadora extends JFrame {
 		clicar = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
+				CaixaDialogo.requestFocus();
 				acoesBotoes.pegaTeclaClicada(event);
 			}
 		};
